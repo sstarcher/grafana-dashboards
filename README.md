@@ -1,6 +1,6 @@
 # Grafana dashboards 
 
-[Grafana.net](https://grafana.net/users/sstarcher)
+[Grafana.net Profile](https://grafana.net/users/sstarcher)
 
 ### Consul
 ![Consul](https://grafana.net/api/dashboards/314/logos/large?lastmod=1471111734000) 
