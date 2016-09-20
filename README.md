@@ -12,3 +12,7 @@
 ### Vault
 
 ![Vault](https://grafana.net/api/dashboards/320/logos/large?lastmod=1471112453000) 
+
+### ETCD
+
+![ETCD](https://grafana.net/api/dashboards/485/logos/large?lastmod=1471112453000) 
