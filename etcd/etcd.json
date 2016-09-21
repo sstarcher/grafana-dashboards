@@ -94,13 +94,13 @@
               "groupBy": [
                 {
                   "params": [
-                    "10s"
+                    "auto"
                   ],
                   "type": "time"
                 },
                 {
                   "params": [
-                    "null"
+                    "previous"
                   ],
                   "type": "fill"
                 }
@@ -116,20 +116,20 @@
               "select": [
                 [
                   {
+                    "type": "field",
                     "params": [
                       "counter"
-                    ],
-                    "type": "field"
+                    ]
                   },
                   {
-                    "params": [],
-                    "type": "sum"
+                    "type": "sum",
+                    "params": []
                   },
                   {
+                    "type": "non_negative_derivative",
                     "params": [
-                      "10s"
-                    ],
-                    "type": "derivative"
+                      "1m"
+                    ]
                   }
                 ]
               ],
@@ -167,7 +167,8 @@
               "min": null,
               "show": true
             }
-          ]
+          ],
+          "interval": ">60s"
         },
         {
           "aliasColors": {},
@@ -213,13 +214,13 @@
               "groupBy": [
                 {
                   "params": [
-                    "10s"
+                    "auto"
                   ],
                   "type": "time"
                 },
                 {
                   "params": [
-                    "null"
+                    "previous"
                   ],
                   "type": "fill"
                 }
@@ -234,20 +235,20 @@
               "select": [
                 [
                   {
+                    "type": "field",
                     "params": [
                       "counter"
-                    ],
-                    "type": "field"
+                    ]
                   },
                   {
-                    "params": [],
-                    "type": "sum"
+                    "type": "sum",
+                    "params": []
                   },
                   {
+                    "type": "non_negative_derivative",
                     "params": [
-                      "10s"
-                    ],
-                    "type": "derivative"
+                      "1m"
+                    ]
                   }
                 ]
               ],
@@ -285,7 +286,8 @@
               "min": null,
               "show": true
             }
-          ]
+          ],
+          "interval": ">60s"
         }
       ],
       "showTitle": false,
@@ -335,7 +337,7 @@
           "renderer": "flot",
           "seriesOverrides": [],
           "span": 6,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
@@ -344,7 +346,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "10s"
+                    "auto"
                   ],
                   "type": "time"
                 },
@@ -356,7 +358,7 @@
                 },
                 {
                   "params": [
-                    "null"
+                    "previous"
                   ],
                   "type": "fill"
                 }
@@ -372,20 +374,20 @@
               "select": [
                 [
                   {
+                    "type": "field",
                     "params": [
                       "counter"
-                    ],
-                    "type": "field"
+                    ]
                   },
                   {
-                    "params": [],
-                    "type": "sum"
+                    "type": "sum",
+                    "params": []
                   },
                   {
+                    "type": "non_negative_derivative",
                     "params": [
-                      "10s"
-                    ],
-                    "type": "derivative"
+                      "1m"
+                    ]
                   }
                 ]
               ],
@@ -423,7 +425,8 @@
               "min": null,
               "show": true
             }
-          ]
+          ],
+          "interval": ">60s"
         },
         {
           "aliasColors": {},
@@ -460,7 +463,7 @@
           "renderer": "flot",
           "seriesOverrides": [],
           "span": 6,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
@@ -469,7 +472,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "10s"
+                    "auto"
                   ],
                   "type": "time"
                 },
@@ -481,7 +484,7 @@
                 },
                 {
                   "params": [
-                    "null"
+                    "previous"
                   ],
                   "type": "fill"
                 }
@@ -496,25 +499,27 @@
               "select": [
                 [
                   {
+                    "type": "field",
                     "params": [
                       "counter"
-                    ],
-                    "type": "field"
+                    ]
                   },
                   {
-                    "params": [],
-                    "type": "sum"
+                    "type": "sum",
+                    "params": []
                   },
                   {
+                    "type": "non_negative_derivative",
                     "params": [
-                      "10s"
-                    ],
-                    "type": "derivative"
+                      "1m"
+                    ]
                   }
                 ]
               ],
               "step": 10,
-              "tags": []
+              "tags": [],
+              "query": "SELECT non_negative_derivative(sum(\"counter\"), 1m) FROM \"etcd_store_writes_total\" WHERE $timeFilter GROUP BY time(1m), \"host\" fill(null)",
+              "rawQuery": false
             }
           ],
           "timeFrom": null,
@@ -547,7 +552,8 @@
               "min": null,
               "show": true
             }
-          ]
+          ],
+          "interval": ">60s"
         }
       ],
       "showTitle": false,
@@ -605,13 +611,13 @@
               "groupBy": [
                 {
                   "params": [
-                    "10s"
+                    "auto"
                   ],
                   "type": "time"
                 },
                 {
                   "params": [
-                    "null"
+                    "previous"
                   ],
                   "type": "fill"
                 }
@@ -627,20 +633,20 @@
               "select": [
                 [
                   {
+                    "type": "field",
                     "params": [
                       "counter"
-                    ],
-                    "type": "field"
+                    ]
                   },
                   {
-                    "params": [],
-                    "type": "sum"
+                    "type": "sum",
+                    "params": []
                   },
                   {
+                    "type": "non_negative_derivative",
                     "params": [
-                      "10s"
-                    ],
-                    "type": "derivative"
+                      "1m"
+                    ]
                   }
                 ]
               ],
@@ -678,7 +684,8 @@
               "min": null,
               "show": true
             }
-          ]
+          ],
+          "interval": ">60s"
         },
         {
           "aliasColors": {},
@@ -727,13 +734,13 @@
               "groupBy": [
                 {
                   "params": [
-                    "10s"
+                    "auto"
                   ],
                   "type": "time"
                 },
                 {
                   "params": [
-                    "null"
+                    "previous"
                   ],
                   "type": "fill"
                 }
@@ -749,14 +756,20 @@
               "select": [
                 [
                   {
+                    "type": "field",
                     "params": [
                       "gauge"
-                    ],
-                    "type": "field"
+                    ]
                   },
                   {
-                    "params": [],
-                    "type": "sum"
+                    "type": "sum",
+                    "params": []
+                  },
+                  {
+                    "type": "non_negative_derivative",
+                    "params": [
+                      "1m"
+                    ]
                   }
                 ]
               ],
@@ -794,7 +807,8 @@
               "min": null,
               "show": true
             }
-          ]
+          ],
+          "interval": ">60s"
         }
       ],
       "showTitle": false,
@@ -802,7 +816,7 @@
     }
   ],
   "time": {
-    "from": "now-1h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {
@@ -835,20 +849,14 @@
       {
         "current": {
           "text": "telegraf",
-          "value": "telegraf"
+          "value": "telegraf",
+          "selected": true
         },
         "datasource": null,
         "hide": 0,
         "includeAll": false,
         "multi": false,
         "name": "datasource",
-        "options": [
-          {
-            "text": "telegraf",
-            "value": "telegraf",
-            "selected": true
-          }
-        ],
         "query": "influxdb",
         "refresh": 1,
         "regex": "/.*telegraf.*/",
@@ -861,7 +869,7 @@
   },
   "refresh": false,
   "schemaVersion": 12,
-  "version": 2,
+  "version": 4,
   "links": [
     {
       "icon": "external link",
@@ -880,5 +888,5 @@
       "url": "https://grafana.net/users/sstarcher"
     }
   ],
-  "gnetId": 178
+  "gnetId": 485
 }
