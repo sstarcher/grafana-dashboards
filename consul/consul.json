@@ -855,14 +855,31 @@
     ]
   },
   "templating": {
-    "list": []
+    "list": [
+      {
+        "type": "datasource",
+        "datasource": null,
+        "refresh": 1,
+        "name": "datasource",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "query": "influxdb",
+        "regex": "/.*statsite.*/",
+        "current": {
+          "text": "statsite",
+          "value": "statsite"
+        },
+        "label": "statsite"
+      }
+    ]
   },
   "annotations": {
     "list": []
   },
   "refresh": false,
   "schemaVersion": 12,
-  "version": 2,
+  "version": 1,
   "links": [
     {
       "icon": "external link",
@@ -873,12 +890,12 @@
       "url": "https://www.consul.io/docs/agent/telemetry.html"
     },
     {
-      "type": "link",
       "icon": "external link",
       "tags": [],
-      "url": "https://grafana.net/users/sstarcher",
       "title": "Dashboard",
-      "tooltip": "grafana.net dashboard"
+      "tooltip": "grafana.net dashboard",
+      "type": "link",
+      "url": "https://grafana.net/users/sstarcher"
     }
   ],
   "gnetId": 314
