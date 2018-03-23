@@ -1,18 +1,17 @@
 # Grafana dashboards 
 
-[Grafana.net Profile](https://grafana.net/users/sstarcher)
-
-### Consul
-![Consul](https://grafana.net/api/dashboards/314/logos/large?lastmod=1471111734000) 
+[Grafana.net Dashboards](https://grafana.com/orgs/sstarcher)
 
 
-### InfluxDB
-![InfluxDB](https://grafana.net/api/dashboards/317/logos/large?lastmod=1471111327000) 
+### Nodes
+![Nodes](https://grafana.com/dashboards/5219)
 
-### Vault
+### Deployments
+![Deployments](https://grafana.com/dashboards/5225)
 
-![Vault](https://grafana.net/api/dashboards/320/logos/large?lastmod=1471112453000) 
+### Capacity
+![Capacity](https://grafana.com/dashboards/5228)
 
-### ETCD
+### Status
+![Status](https://grafana.com/dashboards/5231)
 
-![ETCD](https://grafana.net/api/dashboards/485/logos/large?lastmod=1471112453000) 
