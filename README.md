@@ -4,14 +4,14 @@
 
 
 ### Nodes
-![Nodes](https://grafana.com/dashboards/5219)
+[Nodes](https://grafana.com/dashboards/5219)
 
 ### Deployments
-![Deployments](https://grafana.com/dashboards/5225)
+[Deployments](https://grafana.com/dashboards/5225)
 
 ### Capacity
-![Capacity](https://grafana.com/dashboards/5228)
+[Capacity](https://grafana.com/dashboards/5228)
 
 ### Status
-![Status](https://grafana.com/dashboards/5231)
+[Status](https://grafana.com/dashboards/5231)
 
