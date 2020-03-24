@@ -42,27 +42,13 @@
       }
     ]
   },
+  "description": "Kubernetes to monitor POD statistics",
   "editable": false,
-  "gnetId": 5225,
+  "gnetId": 6588,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1550688543929,
-  "links": [
-    {
-      "icon": "external link",
-      "tags": [],
-      "title": "Github",
-      "type": "link",
-      "url": "https://github.com/sstarcher/grafana-dashboards"
-    },
-    {
-      "icon": "external link",
-      "tags": [],
-      "title": "Grafana",
-      "type": "link",
-      "url": "https://grafana.com/dashboards/5225"
-    }
-  ],
+  "iteration": 1548803097055,
+  "links": [],
   "panels": [
     {
       "aliasColors": {},
@@ -73,10 +59,7 @@
       "editable": true,
       "error": false,
       "fill": 1,
-      "grid": {
-        "threshold1Color": "rgba(216, 200, 27, 0.27)",
-        "threshold2Color": "rgba(234, 112, 112, 0.22)"
-      },
+      "grid": {},
       "gridPos": {
         "h": 7,
         "w": 24,
@@ -84,19 +67,17 @@
         "y": 0
       },
       "id": 1,
-      "isNew": false,
+      "isNew": true,
       "legend": {
         "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
+        "avg": true,
+        "current": true,
         "max": false,
         "min": false,
         "rightSide": false,
-        "show": true,
+        "show": false,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 2,
@@ -112,36 +93,31 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (container_memory_usage_bytes{pod_name=~\"$pod\", container_name=~\"$container\", container_name!=\"POD\", container_name!=\"\"})",
+          "expr": "sum by(pod) (container_memory_usage_bytes{pod_name=\"$pod\", container_name=~\"$container\", container_name!=\"\", container_name!=\"POD\"})",
           "format": "time_series",
           "interval": "10s",
           "intervalFactor": 1,
           "legendFormat": "Current",
           "metric": "container_memory_usage_bytes",
           "refId": "A",
-          "step": 15
+          "step": 10
         },
         {
-          "expr": "sum (kube_pod_container_resource_requests_memory_bytes{pod=~\"$pod\", container=~\"$container\"})",
+          "expr": "sum by(pod) (kube_pod_container_resource_requests_memory_bytes{pod=\"$pod\", container=~\"$container\"})",
           "format": "time_series",
-          "hide": false,
           "interval": "10s",
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "Request",
           "metric": "kube_pod_container_resource_requests_memory_bytes",
           "refId": "B",
           "step": 20
         },
         {
-          "expr": "sum (kube_pod_container_resource_limits_memory_bytes{pod=~\"$pod\", container=~\"$container\"})",
+          "expr": "sum by(pod) (kube_pod_container_resource_limits_memory_bytes{pod=\"$pod\", container=~\"$container\"})",
           "format": "time_series",
-          "hide": false,
-          "interval": "10s",
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "Limit",
-          "metric": "kube_pod_container_resource_limits_memory_bytes",
-          "refId": "C",
-          "step": 20
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -165,6 +141,7 @@
       "yaxes": [
         {
           "format": "bytes",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -172,7 +149,10 @@
         },
         {
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
@@ -190,10 +170,7 @@
       "editable": true,
       "error": false,
       "fill": 1,
-      "grid": {
-        "threshold1Color": "rgba(216, 200, 27, 0.27)",
-        "threshold2Color": "rgba(234, 112, 112, 0.22)"
-      },
+      "grid": {},
       "gridPos": {
         "h": 7,
         "w": 24,
@@ -201,19 +178,17 @@
         "y": 7
       },
       "id": 2,
-      "isNew": false,
+      "isNew": true,
       "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
         "max": false,
         "min": false,
-        "rightSide": false,
-        "show": true,
+        "rightSide": true,
+        "show": false,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 2,
@@ -229,32 +204,26 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(container_cpu_usage_seconds_total{image!=\"\",container_name!=\"POD\",pod_name=~\"$pod\", container_name=~\"$container\"}[5m]))",
+          "expr": "sum by(pod) (rate(container_cpu_usage_seconds_total{image!=\"\",container_name!=\"POD\",pod_name=\"$pod\", container_name=~\"$container\"}[2m] ) )",
           "format": "time_series",
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "Current",
           "refId": "A",
           "step": 30
         },
         {
-          "expr": "sum(kube_pod_container_resource_requests_cpu_cores{pod=~\"$pod\", container=~\"$container\"})",
+          "expr": "sum by(pod) (kube_pod_container_resource_requests_cpu_cores{pod=\"$pod\", container=~\"$container\"})",
           "format": "time_series",
-          "interval": "10s",
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "Request",
-          "metric": "kube_pod_container_resource_requests_cpu_cores",
-          "refId": "B",
-          "step": 20
+          "refId": "B"
         },
         {
-          "expr": "sum(kube_pod_container_resource_limits_cpu_cores{pod=~\"$pod\", container=~\"$container\"})",
+          "expr": "sum by(pod) (kube_pod_container_resource_limits_cpu_cores{pod=\"$pod\", container=~\"$container\"})",
           "format": "time_series",
-          "interval": "10s",
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "Limit",
-          "metric": "kube_pod_container_resource_limits_memory_bytes",
-          "refId": "C",
-          "step": 20
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -278,13 +247,18 @@
       "yaxes": [
         {
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
           "min": "0",
           "show": true
         },
         {
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
@@ -302,30 +276,25 @@
       "editable": true,
       "error": false,
       "fill": 1,
-      "grid": {
-        "threshold1Color": "rgba(216, 200, 27, 0.27)",
-        "threshold2Color": "rgba(234, 112, 112, 0.22)"
-      },
+      "grid": {},
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 24,
         "x": 0,
         "y": 14
       },
       "id": 3,
-      "isNew": false,
+      "isNew": true,
       "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "hideEmpty": false,
-        "hideZero": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
         "max": false,
         "min": false,
-        "rightSide": false,
+        "rightSide": true,
         "show": false,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 2,
@@ -341,10 +310,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(container_network_receive_bytes_total{pod_name=~\"$pod\"}[5m]))",
+          "expr": "sort_desc(sum by (pod_name) (rate (container_network_receive_bytes_total{pod_name=\"$pod\"}[2m]) ))",
           "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Network I/O",
+          "intervalFactor": 1,
+          "legendFormat": "{{ pod_name }}",
           "refId": "A",
           "step": 30
         }
@@ -370,13 +339,18 @@
       "yaxes": [
         {
           "format": "bytes",
+          "label": null,
           "logBase": 1,
+          "max": null,
           "min": "0",
           "show": true
         },
         {
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
@@ -386,7 +360,6 @@
       }
     }
   ],
-  "refresh": false,
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
@@ -416,41 +389,20 @@
         "useTags": false
       },
       {
-        "allValue": ".*",
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Deployments",
-        "multi": false,
-        "name": "deployment",
-        "options": [],
-        "query": "label_values(kube_deployment_metadata_generation{namespace=~\"$namespace\"}, deployment)",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
         "allValue": null,
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "hide": 0,
-        "includeAll": true,
+        "includeAll": false,
         "label": "Pod",
         "multi": false,
         "name": "pod",
         "options": [],
-        "query": "label_values(kube_pod_info{namespace=~\"$namespace\", created_by_name=~\"$deployment-\\\\w{5,10}\"}, pod)",
+        "query": "label_values(kube_pod_info{namespace=~\"$namespace\"}, pod)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
@@ -467,11 +419,11 @@
         "multi": false,
         "name": "container",
         "options": [],
-        "query": "label_values(kube_pod_container_info{namespace=~\"$namespace\", pod=~\"$pod\"}, container)",
+        "query": "label_values(kube_pod_container_info{namespace=~\"$namespace\", pod=\"$pod\"}, container)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
@@ -510,7 +462,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Kubernetes Deployments",
-  "uid": "qZVNJvziz",
+  "title": "Kubernetes Pods",
+  "uid": "3U44p1Hmk",
   "version": 1
 }
