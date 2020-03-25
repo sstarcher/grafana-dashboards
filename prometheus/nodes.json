@@ -991,10 +991,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum (rate(container_cpu_usage_seconds_total{image!=\"\",container_name!=\"POD\", node=~\"$instance\"}[5m])) by (pod_name)",
+          "expr": "sum (rate(container_cpu_usage_seconds_total{image!=\"\",container!=\"POD\", node=~\"$instance\"}[5m])) by (pod)",
           "format": "time_series",
           "intervalFactor": 4,
-          "legendFormat": "{{pod_name}}",
+          "legendFormat": "{{pod}}",
           "refId": "A",
           "step": 30
         }
@@ -1078,11 +1078,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by(pod_name) (container_memory_usage_bytes{node=\"$instance\", container_name!=\"POD\",container_name!=\"\", pod_name!=\"\"})",
+          "expr": "sum by(pod) (container_memory_usage_bytes{node=\"$instance\", container!=\"POD\",container!=\"\", pod!=\"\"})",
           "format": "time_series",
           "interval": "10s",
           "intervalFactor": 1,
-          "legendFormat": "{{pod_name}}",
+          "legendFormat": "{{pod}}",
           "metric": "container_memory_usage_bytes",
           "refId": "A",
           "step": 10
@@ -1190,7 +1190,7 @@
         "multi": false,
         "name": "pods",
         "options": [],
-        "query": "label_values(container_cpu_usage_seconds_total{kubernetes_io_hostname =~\"$instance\"}, pod_name)",
+        "query": "label_values(container_cpu_usage_seconds_total{kubernetes_io_hostname =~\"$instance\"}, pod)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
